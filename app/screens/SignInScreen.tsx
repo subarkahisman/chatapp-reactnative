@@ -10,12 +10,15 @@ import React from "react";
 import KeyboardAvoidingWrapper from "../components/KeyboardAvoidingWrapper";
 import FormInput from "../ui/FormInput";
 import colors from "../utils/color";
+import { Link } from "@react-navigation/native";
 
 const SignInScreen = () => {
   return (
     <KeyboardAvoidingWrapper>
       <View style={styles.containerForm}>
-        <Text style={styles.textXL}>Sign In</Text>
+        <Text style={styles.textXL}>
+          Log<Text style={{ color: colors.primary }}>In</Text>
+        </Text>
 
         <FormInput
           placeholder="Masukan Email"
@@ -29,8 +32,17 @@ const SignInScreen = () => {
         />
 
         <TouchableOpacity style={styles.button}>
-          <Text>Sign In</Text>
+          <Text style={{ color: colors.white }}>Sign In</Text>
         </TouchableOpacity>
+
+        <View style={styles.formDivider} />
+
+        <Text>
+          Belum Ada Account, Silahkan Daftar{" "}
+          <Link action={{ type: "NAVIGATE", payload: { name: "SignUp" } }}>
+            <Text>Disini</Text>
+          </Link>
+        </Text>
       </View>
     </KeyboardAvoidingWrapper>
   );
@@ -52,10 +64,17 @@ const styles = StyleSheet.create({
 
   button: {
     width: "100%",
-    borderRadius: 15,
+    borderRadius: 5,
     alignItems: "center",
     backgroundColor: colors.primary,
     padding: 10,
+  },
+  formDivider: {
+    alignSelf: "center",
+    marginVertical: 15,
+    padding: 2,
+    width: "70%",
+    backgroundColor: colors.primary,
   },
 });
 

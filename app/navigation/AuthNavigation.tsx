@@ -5,6 +5,12 @@ import WelcomeScreen from "../screens/WelcomeScreen";
 import SignInScreen from "../screens/SignInScreen";
 import SignUpScreen from "../screens/SignUpScreen";
 
+export type AuthStackParamsList = {
+  Welcome: undefined;
+  SignIn: undefined;
+  SignUp: undefined;
+};
+
 const Stack = createNativeStackNavigator();
 const AuthNavigation = () => {
   return (
