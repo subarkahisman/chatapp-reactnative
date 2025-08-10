@@ -2,6 +2,7 @@ import React from "react";
 import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import AuthNavigation from "./AuthNavigation";
 import colors from "../utils/color";
+import TabsNavigator from "./TabNavigation";
 
 const myTheme = {
   ...DefaultTheme,
@@ -11,9 +12,10 @@ const myTheme = {
   },
 };
 const Navigator = () => {
+  const isAuth = true;
   return (
     <NavigationContainer theme={myTheme}>
-      <AuthNavigation />
+      {isAuth ? <TabsNavigator /> : <AuthNavigation />}
     </NavigationContainer>
   );
 };

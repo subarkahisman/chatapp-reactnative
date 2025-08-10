@@ -11,7 +11,7 @@ export type AuthStackParamsList = {
   SignUp: undefined;
 };
 
-const Stack = createNativeStackNavigator();
+const Stack = createNativeStackNavigator<AuthStackParamsList>();
 const AuthNavigation = () => {
   return (
     <Stack.Navigator
