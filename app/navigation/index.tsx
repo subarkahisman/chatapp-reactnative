@@ -12,7 +12,7 @@ const myTheme = {
   },
 };
 const Navigator = () => {
-  const isAuth = true;
+  const isAuth = false;
   return (
     <NavigationContainer theme={myTheme}>
       {isAuth ? <TabsNavigator /> : <AuthNavigation />}
