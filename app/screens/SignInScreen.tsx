@@ -15,6 +15,8 @@ import customFetch from "../config/db";
 import { showMessage } from "react-native-flash-message";
 import { AxiosError } from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useDispatch } from "react-redux";
+import { updateAuthState } from "../stores/AuthSlice";
 
 const SignInScreen = () => {
   const [userInfo, setUserInfo] = React.useState({
@@ -23,6 +25,7 @@ const SignInScreen = () => {
   });
 
   const { email, password } = userInfo;
+  const dispatch = useDispatch();
 
   const handleChange = (name: string) => {
     return (text: string) => {
@@ -40,10 +43,11 @@ const SignInScreen = () => {
       console.log("Login successful:", data);
 
       if (data) {
-        await AsyncStorage.setItem("token", data.token);
-        const storage = await AsyncStorage.getItem("token");
-        console.log("Token stored:", storage);
+        // await AsyncStorage.setItem("token", data.token);
+        dispatch(updateAuthState({ profile: data.user, pending: false }));
+
         showMessage({ message: "Login berhasil", type: "success" });
+        await AsyncStorage.setItem("token", data.token);
       }
     } catch (error) {
       let errorMsg = error as any;
